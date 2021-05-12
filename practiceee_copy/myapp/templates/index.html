@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}
+    HomePage
+{% endblock %}
+{% block body %}
+    {% for post in posts %}
+        <div class="box" style="display: inline-block; padding: 10px;">
+            <p>{{ post.title }}</p>
+            {% thumbnail post.image "200x201" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+            <div class="detail" style="padding-top: 5px; padding-left: 35px;" >
+                <a href="{% url 'myapp:detail' post.id %}" class="btn btn-primary">View Detail</a>
+            </div>
+
+        </div>
+        
+    {% endfor %}
+{% endblock %}
